@@ -1,6 +1,8 @@
 # drijfvuil_labeler
 (basis) Qt applicatie om drijfvuilfotos te genereren en labelen
 
+![alt tag](https://github.com/waternet/drijfvuil_labeler/blob/master/qdrijvuil.png)
+
 # werkwijze
 
 ## Genereren van drijfvuilfotos uit de videos
@@ -22,6 +24,12 @@ Stel in de broncode (in mainwindows.cpp) van drijfvuil_labeler de juiste waarde 
 * IMAGE_HEIGHT de hoogte van de image die je wilt genereren (200px is nu standaard)
 
 Bouw en run de applicatie en vermaak je met het invoeren van een aantal labels om het Nautonomous project verder te helpen.
+
+**NB** je kunt toetsen 1 (wel drijfvuil), 2 (niet bruikbaar) en 3 (geen drijfvuil) als sneltoetsen gebruiken.. wel zo handig.
+
+**NB** heb je iets fout gelabeled haal m dan snel weg uit de map waar ie ingekomen is
+
+**NB** de verhouding wel drijfvuil / geen drijfvuil is al snel 1 op de 50.. don't worry, later worden de classes gebalanceerd dus gewoon doorgaan!
 
 ## Who do I talk to
 
