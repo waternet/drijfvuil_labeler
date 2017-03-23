@@ -1,7 +1,7 @@
 # drijfvuil_labeler
 (basis) Qt applicatie om drijfvuilfotos te genereren en labelen
 
-![alt tag](https://github.com/waternet/drijfvuil_labeler/blob/master/qdrijvuil.png)
+![alt tag](https://github.com/waternet/drijfvuil_labeler/blob/master/qdrijfvuil.png)
 
 # werkwijze
 
