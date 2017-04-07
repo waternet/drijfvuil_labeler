@@ -6,10 +6,10 @@
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QDateTime>
+#include <QSettings>
 
-const QString AFBEELDINGSMAP = "/home/breinbaas/programmeren/python/debris_detection/data/raw_images";
-const QString LABEL_DRIJFVUIL_MAP = "/home/breinbaas/programmeren/python/debris_detection/data/labeled/debris";
-const QString LABEL_GEENDRIJFVUIL_MAP = "/home/breinbaas/programmeren/python/debris_detection/data/labeled/no_debris";
+#include "dialogsettings.h"
+
 const int IMAGE_WIDTH = 200;
 const int IMAGE_HEIGHT = 200;
 
@@ -23,24 +23,33 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    QSettings settings;
+    settings.setValue("raw_path", m_raw_path);
+    settings.setValue("debris_path", m_debris_path);
+    settings.setValue("no_debris_path", m_nodebris_path);
     delete ui;
 }
 
 void MainWindow::init()
 {
     qsrand(QDateTime::currentDateTime().toTime_t()); //zeker weten dat we ECHT random beginnen
-    QDir dir(AFBEELDINGSMAP);
-    dir.setFilter(QDir::Files);
-    m_filenames = dir.entryList(QStringList()<<"*.png");
-    showNextImage();
+
+    QSettings settings;
+    m_raw_path = settings.value("raw_path").toString();
+    m_debris_path = settings.value("debris_path").toString();
+    m_nodebris_path = settings.value("no_debris_path").toString();
+
+    initImages();
 }
 
 void MainWindow::showNextImage()
 {
+    if(m_filenames.count()==0) return;
+
     int index = qrand() % (m_filenames.count());
 
     QImage* img = new QImage();
-    img->load(QDir::cleanPath(AFBEELDINGSMAP + QDir::separator() + m_filenames[index]));
+    img->load(QDir::cleanPath(m_raw_path + QDir::separator() + m_filenames[index]));
     QPixmap pix = QPixmap::fromImage(*img);
 
     int wmax = pix.width() - IMAGE_WIDTH;
@@ -55,11 +64,19 @@ void MainWindow::showNextImage()
     ui->graphicsView->setScene(scene);
 }
 
+void MainWindow::initImages()
+{
+    QDir dir(m_raw_path);
+    dir.setFilter(QDir::Files);
+    m_filenames = dir.entryList(QStringList()<<"*.png");
+    showNextImage();
+}
+
 void MainWindow::on_pbYes_clicked()
 {
     //generate random name;
     QString filename = QString("%1.png").arg(QDateTime::currentMSecsSinceEpoch());
-    m_selection.save(LABEL_DRIJFVUIL_MAP + QDir::separator() + filename);
+    m_selection.save(m_debris_path + QDir::separator() + filename);
     showNextImage();
 }
 
@@ -71,6 +88,20 @@ void MainWindow::on_pbDiscard_clicked()
 void MainWindow::on_pbNo_clicked()
 {
     QString filename = QString("%1.png").arg(QDateTime::currentMSecsSinceEpoch());
-    m_selection.save(LABEL_GEENDRIJFVUIL_MAP + QDir::separator() + filename);
+    m_selection.save(m_nodebris_path + QDir::separator() + filename);
     showNextImage();
+}
+
+void MainWindow::on_actionInstellingen_triggered()
+{
+    DialogSettings *dlg = new DialogSettings();
+    dlg->setRawPath(m_raw_path);
+    dlg->setDebrisPath(m_debris_path);
+    dlg->setNoDebrisPath(m_nodebris_path);
+
+    if(dlg->exec() == QDialog::Accepted){
+        m_raw_path = dlg->getRawPath();
+        m_debris_path = dlg->getDebrisPath();
+        m_nodebris_path = dlg->getNoDebrisPath();
+    }
 }

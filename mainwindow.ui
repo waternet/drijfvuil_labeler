@@ -67,7 +67,14 @@
     <addaction name="separator"/>
     <addaction name="actionStoppen"/>
    </widget>
+   <widget class="QMenu" name="menuOpties">
+    <property name="title">
+     <string>Opties</string>
+    </property>
+    <addaction name="actionInstellingen"/>
+   </widget>
    <addaction name="menuBestand"/>
+   <addaction name="menuOpties"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -86,6 +93,11 @@
   <action name="actionStoppen">
    <property name="text">
     <string>Stoppen</string>
+   </property>
+  </action>
+  <action name="actionInstellingen">
+   <property name="text">
+    <string>Instellingen</string>
    </property>
   </action>
  </widget>
