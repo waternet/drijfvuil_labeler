@@ -15,15 +15,11 @@ waardoor (globaal) per seconde een frame omgezet wordt in een png bestand.
 Plaats deze afbeeldingen vervolgens in een centrale map.
 
 ## Labelen van de afbeeldingen
-Stel in de broncode (in mainwindows.cpp) van drijfvuil_labeler de juiste waarde in voor de constanten;
+Als je de applicatie voor het eerst uitvoert kun je via het menu Opties | Instellingen de paden naar de juiste mappen instellen. Let op de volgende logica
 
-* AFEELDINGSMAP de locatie waar de originele afbeeldingen staan
-* LABEL_DRIJFVUIL_MAP de locatie waar de als drijfvuil geclassificeerde bestanden heen moeten
-* LABEL_GEENDRIJFVUIL_MAP de locatie de als NIET drijfvuil geclassificeerde bestanden heen moeten
-* IMAGE_WIDTH de breedte van de image die je wilt genereren (200px is nu standaard)
-* IMAGE_HEIGHT de hoogte van de image die je wilt genereren (200px is nu standaard)
-
-Bouw en run de applicatie en vermaak je met het invoeren van een aantal labels om het Nautonomous project verder te helpen.
+* Locatie ruwe bestanden verwijst naar de plek waar de uit de videomateriaal gegenereerde afbeeldingen staan
+* Locatie drijfvuil foto's verwijst naar de plek waar de als drijfvuil geclassificeerde foto's opgeslagen worden
+* Locatie NIET-drijfvuil foto's verwijst naar de plek waar de als NIET drijfvuil geclassificeerde foto's opgeslagen worden
 
 **NB** je kunt toetsen 1 (wel drijfvuil), 2 (niet bruikbaar) en 3 (geen drijfvuil) als sneltoetsen gebruiken.. wel zo handig.
 
