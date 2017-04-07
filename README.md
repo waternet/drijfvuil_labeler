@@ -17,7 +17,7 @@ Plaats deze afbeeldingen vervolgens in een centrale map.
 ## Labelen van de afbeeldingen
 Als je de applicatie voor het eerst uitvoert kun je via het menu Opties | Instellingen de paden naar de juiste mappen instellen. Let op de volgende logica
 
-* Locatie ruwe bestanden verwijst naar de plek waar de uit de videomateriaal gegenereerde afbeeldingen staan
+* Locatie ruwe bestanden verwijst naar de plek waar de uit het videomateriaal gegenereerde afbeeldingen staan
 * Locatie drijfvuil foto's verwijst naar de plek waar de als drijfvuil geclassificeerde foto's opgeslagen worden
 * Locatie NIET-drijfvuil foto's verwijst naar de plek waar de als NIET drijfvuil geclassificeerde foto's opgeslagen worden
 
