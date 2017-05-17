@@ -103,5 +103,6 @@ void MainWindow::on_actionInstellingen_triggered()
         m_raw_path = dlg->getRawPath();
         m_debris_path = dlg->getDebrisPath();
         m_nodebris_path = dlg->getNoDebrisPath();
+        showNextImage();
     }
 }
