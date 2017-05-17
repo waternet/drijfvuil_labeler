@@ -23,6 +23,8 @@ private slots:
 
     void on_actionInstellingen_triggered();
 
+    void on_actionStoppen_triggered();
+
 private:
     Ui::MainWindow *ui;
     QStringList m_filenames;
@@ -35,6 +37,9 @@ private:
     void init();
     void showNextImage();
     void initImages();
+
+    void loadSettings();
+    void saveSettings();
 };
 
 #endif // MAINWINDOW_H

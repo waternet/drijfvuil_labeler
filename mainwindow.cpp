@@ -17,28 +17,20 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    
     init();
 }
 
 MainWindow::~MainWindow()
 {
-    QSettings settings;
-    settings.setValue("raw_path", m_raw_path);
-    settings.setValue("debris_path", m_debris_path);
-    settings.setValue("no_debris_path", m_nodebris_path);
+    saveSettings();
     delete ui;
 }
 
 void MainWindow::init()
 {
     qsrand(QDateTime::currentDateTime().toTime_t()); //zeker weten dat we ECHT random beginnen
-
-    QSettings settings;
-    m_raw_path = settings.value("raw_path").toString();
-    m_debris_path = settings.value("debris_path").toString();
-    m_nodebris_path = settings.value("no_debris_path").toString();
-
+    loadSettings();
     initImages();
 }
 
@@ -72,6 +64,23 @@ void MainWindow::initImages()
     showNextImage();
 }
 
+void MainWindow::loadSettings()
+{
+    QSettings settings("Waternet", "DrijfvuilLabeler");
+    m_raw_path = settings.value("raw_path").toString();
+    m_debris_path = settings.value("debris_path").toString();
+    m_nodebris_path = settings.value("no_debris_path").toString();
+}
+
+void MainWindow::saveSettings()
+{
+    QSettings settings("Waternet", "DrijfvuilLabeler");
+    settings.setValue("raw_path", m_raw_path);
+    settings.setValue("debris_path", m_debris_path);
+    settings.setValue("no_debris_path", m_nodebris_path);
+
+}
+
 void MainWindow::on_pbYes_clicked()
 {
     //generate random name;
@@ -103,6 +112,12 @@ void MainWindow::on_actionInstellingen_triggered()
         m_raw_path = dlg->getRawPath();
         m_debris_path = dlg->getDebrisPath();
         m_nodebris_path = dlg->getNoDebrisPath();
+        initImages();
         showNextImage();
     }
+}
+
+void MainWindow::on_actionStoppen_triggered()
+{
+    close();
 }
